@@ -1,0 +1,39 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Table of Author</h1>
+
+       
+
+        <table border="1" cellspacing="0" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>local</th>
+                    
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for annonces in agence %}
+                    <tr>
+                        <td>{{ annonces.id }}</td>
+                        <td>{{ annonces.title }}</td>
+                        <td>{{ annonces.publication|date('Y-m-d') }}</td>
+                        <td>{{ annonces.nbrLike}}</td>
+
+                        <td>
+                            <a href="{{ path('app_annonce_edit', { 'id': annonces.id }) }}">Edit</a>
+                            <a href="{{ path('app_delete_annonce', { 'id': annonces.id }) }}" onclick="return confirm('Are you sure you want to delete this annoce?');">Delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">No annonce found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
